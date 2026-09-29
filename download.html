@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#100b0e">
+	<meta name="description" content="معلومات البرنامج ومصدر التحميل الرسمي.">
+	<title>معلومات التحميل | مكتبة</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: dark;
+			--page: #100b0e;
+			--surface: #191116;
+			--surface-raised: #24171d;
+			--line: #402a33;
+			--text: #f6eef0;
+			--muted: #bba9af;
+			--accent: #b73550;
+			--accent-hover: #cb4560;
+			--accent-ink: #fff7f8;
+			--warm: #d88b98;
+		}
+
+		* { box-sizing: border-box; }
+		body { min-height: 100vh; margin: 0; background: radial-gradient(ellipse at 82% 0%, #351720 0, transparent 36rem), var(--page); color: var(--text); font-family: "IBM Plex Sans Arabic", Tahoma, sans-serif; line-height: 1.75; }
+		a { color: inherit; text-decoration: none; }
+		.wrap { width: min(1000px, calc(100% - 40px)); margin-inline: auto; }
+		.topbar { height: 78px; display: flex; align-items: center; border-bottom: 1px solid #ffffff12; background: linear-gradient(90deg, #100b0ecc, #1a1015cc, #100b0ecc); }
+		.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 700; }
+		.brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #e36a7e55; border-radius: 11px; background: linear-gradient(145deg, #c4425d, #852239); color: var(--accent-ink); font-size: 20px; box-shadow: 0 5px 18px #8f263a33; }
+		.back-link { display: inline-flex; min-height: 40px; align-items: center; gap: 7px; padding: 7px 12px; border: 1px solid #54323d; border-radius: 7px; background: #20151a; color: #d1c0c5; font-size: 13px; font-weight: 500; transition: background 160ms ease, border-color 160ms ease, color 160ms ease; }
+		.back-link:hover { border-color: #a33a52; background: #2b1820; color: #f0a1ad; }
+		main { padding: 62px 0 84px; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 18px; color: #e17889; font-size: 13px; font-weight: 600; }
+		.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #d04b64; box-shadow: 0 0 13px #d04b6488; }
+		.detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 42px; align-items: start; }
+		h1 { margin: 0; font-size: 42px; line-height: 1.3; }
+		.category { margin: 8px 0 0; color: #d1a0aa; font-size: 14px; font-weight: 500; }
+		.description { max-width: 650px; margin: 20px 0 32px; color: #c9b9be; font-size: 15px; }
+		.cover { display: grid; width: 250px; aspect-ratio: 1; place-items: center; overflow: hidden; border: 1px solid #70404d; border-radius: 12px; background: radial-gradient(circle at 70% 22%, #ffffff22, transparent 34%), linear-gradient(145deg, var(--cover-a), var(--cover-b)); box-shadow: inset 0 1px #ffffff1a, 0 16px 34px #08050744; }
+		.cover img { width: min(48%, 116px); aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 12px 18px #0008); }
+		.cover img[data-monochrome="true"] { filter: brightness(0) invert(1) drop-shadow(0 12px 18px #0008); }
+		.cover span { font-size: 92px; line-height: 1; filter: drop-shadow(0 12px 18px #0008); }
+		.file-section { border-top: 1px solid var(--line); }
+		.file-section h2 { margin: 24px 0 14px; font-size: 19px; }
+		.file-info { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: #191116cc; }
+		.file-info div { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 13px 16px; border-bottom: 1px solid #ffffff0d; }
+		.file-info div:nth-child(even) { background: #ffffff04; }
+		.file-info div:last-child { border-bottom: 0; }
+		.file-info dt { color: #bba9af; font-size: 13px; font-weight: 500; }
+		.file-info dd { margin: 0; color: #f0e6e9; font-size: 13px; }
+		.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+		.download-button, .secondary-button { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 9px; padding: 9px 18px; border: 1px solid var(--line); border-radius: 7px; font-size: 14px; font-weight: 600; transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease; }
+		.download-button { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); box-shadow: 0 7px 20px #8f263a33; }
+		.download-button:hover { transform: translateY(-1px); border-color: var(--accent-hover); background: var(--accent-hover); }
+		.secondary-button { background: #20151a; color: #d1c0c5; }
+		.secondary-button:hover { border-color: #a33a52; background: #2b1820; color: #f0a1ad; }
+		.rights-note { margin-top: 28px; padding: 16px 18px; border-right: 3px solid var(--warm); border-radius: 3px 7px 7px 3px; background: #d88b9810; color: #ccb9be; font-size: 12px; }
+		.rights-note strong { display: block; margin-bottom: 4px; color: #e49aa5; font-size: 13px; }
+		.not-found { display: none; max-width: 600px; padding: 30px 0; }
+		.not-found h1 { font-size: 28px; }
+		footer { border-top: 1px solid #ffffff12; background: linear-gradient(110deg, #100b0e, #1a1015 52%, #100b0e); }
+		.footer-inner { display: flex; min-height: 84px; align-items: center; justify-content: space-between; gap: 16px; color: #a9949b; font-size: 12px; }
+		.footer-inner a { color: var(--text); font-weight: 600; }
+		.footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+		.footer-links a { transition: color 160ms ease; }
+		.footer-links a:hover { color: #e17889; }
+		@media (max-width: 650px) {
+			.wrap { width: min(100% - 28px, 1000px); }
+			.topbar { height: 66px; }
+			.detail-layout { grid-template-columns: 1fr; gap: 25px; }
+			.cover { grid-row: 1; width: 100%; height: 200px; aspect-ratio: auto; }
+			.cover img { width: 94px; }
+			.cover span { font-size: 76px; }
+			main { padding: 40px 0 60px; }
+			h1 { font-size: 32px; }
+			.file-info div { grid-template-columns: 118px minmax(0, 1fr); gap: 10px; padding: 12px; }
+			.actions > * { flex: 1 1 190px; }
+			.footer-inner { min-height: 100px; flex-wrap: wrap; justify-content: center; gap: 4px 14px; padding-block: 13px; text-align: center; }
+			.footer-links { order: 3; width: 100%; justify-content: center; gap: 12px 18px; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<div class="wrap topbar-inner">
+			<a class="brand" href="index.html" aria-label="مكتبة، الصفحة الرئيسية"><span class="brand-mark" aria-hidden="true">⬇</span><span>مكتبة<span style="color: var(--accent)">.</span></span></a>
+			<a class="back-link" href="index.html#المكتبة">العودة إلى المكتبة <span aria-hidden="true">←</span></a>
+		</div>
+	</header>
+
+	<main class="wrap">
+		<section id="detail-page" aria-labelledby="app-name">
+			<p class="eyebrow">صفحة التحميل الرسمية</p>
+			<div class="detail-layout">
+				<div>
+					<h1 id="app-name"></h1>
+					<p class="category" id="app-category"></p>
+					<p class="description" id="app-description"></p>
+					<section class="file-section" aria-labelledby="file-title">
+						<h2 id="file-title">معلومات الملف</h2>
+						<dl class="file-info">
+							<div><dt>الإصدار</dt><dd id="app-version"></dd></div>
+							<div><dt>حجم الملف</dt><dd id="app-size"></dd></div>
+							<div><dt>نظام التشغيل</dt><dd id="app-os"></dd></div>
+							<div><dt>نوع الملف</dt><dd id="app-format"></dd></div>
+							<div><dt>مصدر التحميل</dt><dd id="app-source"></dd></div>
+							<div><dt>الترخيص</dt><dd id="app-license"></dd></div>
+						</dl>
+						<div class="actions">
+							<a class="download-button" id="official-download" href="#" target="_blank" rel="noopener noreferrer">الانتقال إلى التحميل الرسمي <span aria-hidden="true">↙</span></a>
+							<a class="secondary-button" href="index.html#المكتبة">تصفّح برامج أخرى</a>
+						</div>
+						<aside class="rights-note"><strong>تنبيه حقوق النشر</strong><span id="rights-copy"></span></aside>
+					</section>
+				</div>
+				<div class="cover" id="app-cover" role="img" aria-label=""><img id="app-image" alt="" hidden><span id="app-icon" aria-hidden="true" hidden></span></div>
+			</div>
+		</section>
+		<section class="not-found" id="not-found" aria-live="polite">
+			<p class="eyebrow">الصفحة غير متاحة</p>
+			<h1>لم نعثر على هذا البرنامج.</h1>
+			<p class="description">اختر برنامجًا أو لعبة من مكتبة التحميل.</p>
+			<a class="download-button" href="index.html#المكتبة">العودة إلى المكتبة</a>
+		</section>
+	</main>
+
+	<footer><div class="wrap footer-inner"><a href="index.html">مكتبة. برامج وألعاب</a><nav class="footer-links" aria-label="روابط الموقع"><a href="about.html">من نحن</a><a href="contact.html">اتصل بنا</a><a href="privacy.html">سياسة الخصوصية</a></nav><span>© 2026 · العلامات والحقوق لأصحابها</span></div></footer>
+
+	<script>
+		const apps = {
+			vlc: {
+				name: "VLC Media Player",
+				category: "مشغل وسائط · مجاني ومفتوح المصدر",
+				description: "مشغل وسائط مجاني يشغّل معظم صيغ الفيديو والصوت على أجهزة الكمبيوتر.",
+				icon: "🎬", colors: ["#6f2638", "#241116"],
+				image: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/vlcmediaplayer.svg", monochrome: true,
+				os: "Windows وmacOS وLinux",
+				format: "مثبّت أو حزمة بحسب النظام",
+				license: "مجاني ومفتوح المصدر",
+				source: "VideoLAN · الموقع الرسمي",
+				url: "https://www.videolan.org/vlc/"
+			},
+			blender: {
+				name: "Blender",
+				category: "إنشاء ثلاثي الأبعاد · مجاني ومفتوح المصدر",
+				description: "مجموعة أدوات لإنشاء المجسمات والتحريك والمؤثرات والرسوم ثلاثية الأبعاد.",
+				icon: "🌀", colors: ["#792d3d", "#281319"],
+				image: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/blender.svg", monochrome: true,
+				os: "Windows وmacOS وLinux",
+				format: "مثبّت أو حزمة بحسب النظام",
+				license: "مجاني ومفتوح المصدر",
+				source: "Blender Foundation · الموقع الرسمي",
+				url: "https://www.blender.org/download/"
+			},
+			firefox: {
+				name: "Firefox",
+				category: "متصفح إنترنت",
+				description: "متصفح ويب يركز على الخصوصية، مع أدوات للتخصيص ومزامنة التصفح.",
+				icon: "🦊", colors: ["#552339", "#1e1118"],
+				image: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/firefoxbrowser.svg", monochrome: true,
+				os: "Windows وmacOS وLinux وAndroid وiOS",
+				format: "مثبّت بحسب النظام",
+				license: "مجاني · وفق شروط Mozilla",
+				source: "Mozilla · الموقع الرسمي",
+				url: "https://www.mozilla.org/firefox/new/"
+			},
+			minecraft: {
+				name: "Minecraft",
+				category: "لعبة مغامرات وبناء",
+				description: "لعبة عالم مفتوح تتيح الاستكشاف وجمع الموارد وبناء العوالم.",
+				icon: "⛏️", colors: ["#50202c", "#191014"],
+				image: "https://www.minecraft.net/etc.clientlibs/minecraftnet/clientlibs/clientlib-site/resources/favicon.ico",
+				os: "Windows وmacOS وLinux · حسب الإصدار",
+				format: "مشغّل اللعبة أو حزمة بحسب النظام",
+				license: "لعبة تجارية · قد يتطلب اللعب شراءً",
+				source: "Minecraft · الموقع الرسمي",
+				url: "https://www.minecraft.net/download"
+			},
+			genshin: {
+				name: "Genshin Impact",
+				category: "لعبة مغامرات وعالم مفتوح",
+				description: "لعبة تقمّص أدوار ومغامرات في عالم Teyvat، مع تحديثات ومحتوى دوري.",
+				icon: "✨", colors: ["#6c3442", "#271419"],
+				image: "https://genshin.hoyoverse.com/favicon.ico",
+				os: "Windows وAndroid وiOS وPlayStation · حسب التوفر",
+				format: "مشغّل أو حزمة بحسب النظام",
+				license: "مجانية للعب · وفق شروط HoYoverse",
+				source: "HoYoverse · الموقع الرسمي",
+				url: "https://genshin.hoyoverse.com/"
+			},
+			steam: {
+				name: "Steam",
+				category: "منصة ألعاب للكمبيوتر",
+				description: "منصة لاكتشاف ألعاب الكمبيوتر وشرائها وتنظيم مكتبتك والتواصل مع اللاعبين.",
+				icon: "🎮", colors: ["#42202e", "#141116"],
+				image: "https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/steam.svg", monochrome: true,
+				os: "Windows وmacOS وLinux",
+				format: "مثبّت بحسب النظام",
+				license: "المنصة مجانية · الألعاب وفق شروط ناشريها",
+				source: "Valve · الموقع الرسمي",
+				url: "https://store.steampowered.com/about/"
+			}
+		};
+
+		const app = apps[new URLSearchParams(window.location.search).get("app")];
+		if (!app) {
+			document.querySelector("#detail-page").hidden = true;
+			document.querySelector("#not-found").style.display = "block";
+		} else {
+			document.title = `${app.name} | معلومات التحميل - مكتبة`;
+			document.querySelector("#app-name").textContent = app.name;
+			document.querySelector("#app-category").textContent = app.category;
+			document.querySelector("#app-description").textContent = app.description;
+			document.querySelector("#app-version").textContent = "أحدث إصدار يحدده المصدر الرسمي عند التحميل";
+			document.querySelector("#app-size").textContent = "يختلف حسب النظام والإصدار؛ راجع الحجم المعروض في المصدر الرسمي قبل التنزيل";
+			document.querySelector("#app-os").textContent = app.os;
+			document.querySelector("#app-format").textContent = app.format;
+			document.querySelector("#app-source").textContent = app.source;
+			document.querySelector("#app-license").textContent = app.license;
+			document.querySelector("#official-download").href = app.url;
+			document.querySelector("#app-icon").textContent = app.icon;
+			const appImage = document.querySelector("#app-image");
+			appImage.addEventListener("error", () => {
+				appImage.hidden = true;
+				document.querySelector("#app-icon").hidden = false;
+			}, { once: true });
+			if (app.monochrome) appImage.dataset.monochrome = "true";
+			appImage.src = app.image;
+			appImage.hidden = false;
+			document.querySelector("#app-cover").setAttribute("aria-label", `صورة تعريفية لـ ${app.name}`);
+			document.querySelector("#app-cover").style.setProperty("--cover-a", app.colors[0]);
+			document.querySelector("#app-cover").style.setProperty("--cover-b", app.colors[1]);
+			document.querySelector("#rights-copy").textContent = `الاسم والشعار والمحتوى الخاص بـ ${app.name} مملوك لأصحاب الحقوق. هذه الصفحة تعريفية، والتحويل يتم إلى الموقع الرسمي؛ لا نستضيف ملفات البرنامج ولا ندّعي ملكيتها أو إعادة توزيعها.`;
+		}
+	</script>
+</body>
+</html>

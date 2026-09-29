@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#100b0e">
+	<meta name="description" content="اكتشف وحمّل أفضل البرامج والألعاب من مكتبة برامجنا.">
+	<title>مكتبة | برامج وألعاب</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: dark;
+			--page: #100b0e;
+			--surface: #191116;
+			--surface-raised: #24171d;
+			--line: #402a33;
+			--text: #f6eef0;
+			--muted: #bba9af;
+			--accent: #b73550;
+			--accent-hover: #cb4560;
+			--accent-ink: #fff7f8;
+			--warm: #d88b98;
+		}
+
+		* { box-sizing: border-box; }
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			margin: 0;
+			background-color: var(--page);
+			background-image: radial-gradient(ellipse at 82% 0%, #351720 0, transparent 36rem);
+			color: var(--text);
+			font-family: "IBM Plex Sans Arabic", Tahoma, sans-serif;
+			line-height: 1.65;
+		}
+
+		a { color: inherit; text-decoration: none; }
+		button, input { font: inherit; }
+		button { color: inherit; }
+
+		.wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+
+		.topbar {
+			height: 76px;
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #ffffff12;
+			background: linear-gradient(90deg, #100b0ecc, #1a1015cc, #100b0ecc);
+		}
+
+		.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 700; white-space: nowrap; }
+		.brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #e36a7e55; border-radius: 11px; background: linear-gradient(145deg, #c4425d, #852239); color: var(--accent-ink); font-size: 20px; box-shadow: 0 5px 18px #8f263a33; }
+		.nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: 14px; font-weight: 500; }
+		.nav-links a { transition: color 160ms ease; }
+		.nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+		.top-download { padding: 10px 16px; border: 1px solid #6d3343; border-radius: 7px; background: #24141a; font-size: 13px; font-weight: 600; white-space: nowrap; transition: background 160ms ease, border-color 160ms ease; }
+		.top-download:hover { border-color: var(--accent); background: #341b24; }
+
+		.hero { position: relative; padding: 78px 0 58px; overflow: hidden; }
+		.hero::after { content: ""; position: absolute; inset: 0 58% 0 0; opacity: .25; pointer-events: none; background-image: linear-gradient(135deg, transparent 49.7%, #bd3b5520 50%, transparent 50.3%), linear-gradient(45deg, transparent 49.7%, #85223922 50%, transparent 50.3%); background-size: 48px 48px; mask-image: linear-gradient(to left, transparent, black); }
+		.hero-content { position: relative; z-index: 1; max-width: 700px; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 18px; color: #e17889; font-size: 13px; font-weight: 600; }
+		.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #d04b64; box-shadow: 0 0 13px #d04b6488; }
+		h1 { max-width: 680px; margin: 0; font-size: 56px; line-height: 1.25; letter-spacing: 0; }
+		h1 span { color: var(--accent); }
+		.hero-copy { max-width: 520px; margin: 17px 0 25px; color: var(--muted); font-size: 16px; }
+
+		.search-box { display: flex; align-items: center; gap: 12px; width: min(590px, 100%); min-height: 58px; padding: 8px 11px 8px 17px; border: 1px solid #56323d; border-radius: 9px; background: #191116; box-shadow: 0 10px 28px #08050744; }
+		.search-icon { color: var(--accent); font-size: 21px; line-height: 1; }
+		.search-box input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 14px; }
+		.search-box input::placeholder { color: #a58f96; }
+		.search-box:focus-within { border-color: #c64b64; box-shadow: 0 0 0 3px #b7355028, 0 10px 28px #08050744; }
+		.search-hint { color: #9c858d; font-size: 12px; white-space: nowrap; }
+
+		.library { padding: 20px 0 84px; }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+		.section-heading h2 { margin: 0; font-size: 24px; letter-spacing: 0; }
+		.section-heading p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+		.filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; overflow-x: auto; scrollbar-width: none; }
+		.filters::-webkit-scrollbar { display: none; }
+		.filter-button { min-height: 39px; padding: 7px 16px; border: 1px solid var(--line); border-radius: 7px; background: #171015; color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+		.filter-button:hover { transform: translateY(-1px); border-color: #854052; color: var(--text); }
+		.filter-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+
+		.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+		.app-card { display: flex; min-height: 232px; flex-direction: column; padding: 21px; border: 1px solid var(--line); border-radius: 9px; background: linear-gradient(145deg, #21161b, #181116); box-shadow: 0 12px 28px #08050722; transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+		.app-card[hidden] { display: none; }
+		.app-card:hover { transform: translateY(-3px); border-color: #814052; box-shadow: 0 16px 34px #08050755; }
+		.card-top { display: flex; min-width: 0; align-items: center; gap: 14px; }
+		.app-icon { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border: 1px solid #ffffff14; border-radius: 12px; background: var(--icon-bg, #30352b); font-size: 25px; }
+		.app-icon img { width: 28px; height: 28px; object-fit: contain; }
+		.app-icon img[data-monochrome="true"] { filter: brightness(0) invert(1); }
+		.app-name { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.4; }
+		.app-category { display: block; margin-top: 1px; color: var(--muted); font-size: 12px; }
+		.app-description { min-height: 52px; margin: 17px 0 20px; color: #c5b6bb; font-size: 13px; line-height: 1.85; }
+		.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; }
+		.app-meta { color: #a28d94; font-size: 11px; }
+		.download-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 37px; padding: 6px 13px; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-size: 12px; font-weight: 700; transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+		.download-button:hover { transform: translateY(-1px); border-color: var(--accent-hover); background: var(--accent-hover); color: var(--accent-ink); }
+		.download-button span { font-size: 15px; line-height: 1; }
+		.card-actions { display: flex; align-items: center; gap: 8px; }
+		.details-button { display: inline-flex; align-items: center; justify-content: center; min-height: 37px; padding: 6px 11px; border: 1px solid #54323d; border-radius: 6px; background: #20151a; color: #d1c0c5; font-size: 12px; font-weight: 600; transition: border-color 160ms ease, color 160ms ease, background 160ms ease; }
+		.details-button:hover { border-color: #a33a52; background: #2b1820; color: #f0a1ad; }
+		.empty-state { display: none; grid-column: 1 / -1; padding: 44px 20px; border: 1px dashed #65404a; border-radius: 9px; background: #1a1116; color: var(--muted); text-align: center; }
+
+		footer { border-top: 1px solid #ffffff12; background: linear-gradient(110deg, #100b0e, #1a1015 52%, #100b0e); }
+		.footer-inner { display: flex; min-height: 88px; align-items: center; justify-content: space-between; gap: 16px; color: #a9949b; font-size: 12px; }
+		.footer-brand { color: var(--text); font-size: 13px; font-weight: 700; }
+		.footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+		.footer-links a { transition: color 160ms ease; }
+		.footer-links a:hover { color: #e17889; }
+		.copyright { margin: 0; }
+		.copyright strong { color: #df7485; font-weight: 600; }
+
+		@media (max-width: 900px) {
+			.nav-links { gap: 15px; }
+			.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.hero { padding-top: 60px; }
+			h1 { font-size: 48px; }
+		}
+
+		@media (max-width: 600px) {
+			.cards { grid-template-columns: 1fr; }
+		}
+
+		@media (max-width: 520px) {
+			.wrap { width: min(100% - 28px, 1120px); }
+			.topbar { height: auto; min-height: 66px; padding-block: 10px; }
+			.topbar-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; }
+			.brand { font-size: 16px; }
+			.brand { grid-column: 1; grid-row: 1; }
+			.brand-mark { width: 32px; height: 32px; }
+			.nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: center; gap: 6px; font-size: 12px; }
+			.nav-links a { display: inline-flex; min-height: 36px; align-items: center; padding-inline: 10px; border: 1px solid transparent; border-radius: 6px; }
+			.nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: inline-flex; }
+			.top-download { grid-column: 2; grid-row: 1; padding: 7px 10px; font-size: 12px; }
+			.hero { padding: 45px 0 38px; }
+			h1 { font-size: 40px; }
+			.hero-copy { font-size: 14px; }
+			.search-box { min-height: 52px; }
+			.search-hint { display: none; }
+			.section-heading { align-items: start; }
+			.section-heading h2 { font-size: 21px; }
+			.app-card { min-height: 208px; padding: 19px; }
+			.card-actions { gap: 6px; }
+			.details-button, .download-button { padding-inline: 10px; }
+			.footer-inner { min-height: 100px; flex-wrap: wrap; justify-content: center; gap: 4px 15px; padding-block: 15px; text-align: center; }
+			.footer-links { order: 3; width: 100%; justify-content: center; gap: 12px 18px; }
+		}
+
+		@media (max-width: 360px) {
+			.card-bottom { align-items: flex-start; flex-direction: column; gap: 9px; }
+			.app-meta { white-space: nowrap; }
+			.card-actions { width: 100%; }
+			.card-actions a { white-space: nowrap; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="topbar" id="الرئيسية">
+		<div class="wrap topbar-inner">
+			<a class="brand" href="#الرئيسية" aria-label="مكتبة، الصفحة الرئيسية">
+				<span class="brand-mark" aria-hidden="true">⬇</span>
+				<span>مكتبة<span style="color: var(--accent)">.</span></span>
+			</a>
+			<nav class="nav-links" aria-label="القائمة الرئيسية">
+				<a href="#الرئيسية">الرئيسية</a>
+				<a href="#البرامج">البرامج</a>
+				<a href="#الألعاب">الألعاب</a>
+			</nav>
+			<a class="top-download" href="#المكتبة">تصفّح المكتبة <span aria-hidden="true">←</span></a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" aria-labelledby="hero-title">
+			<div class="wrap hero-content">
+				<p class="eyebrow">مكتبتك الرقمية في مكان واحد</p>
+				<h1 id="hero-title">الشيء المناسب،<br><span>على بُعد تحميل.</span></h1>
+				<p class="hero-copy">اكتشف برامجك المفضّلة وألعابك الجديدة. اختيارات تستحق وقتك، وروابط مباشرة للمصادر الرسمية.</p>
+				<label class="search-box" for="library-search">
+					<span class="search-icon" aria-hidden="true">⌕</span>
+					<input id="library-search" type="search" placeholder="ابحث عن برنامج أو لعبة..." autocomplete="off">
+					<span class="search-hint">جرّب: تصميم، متصفح، مغامرة</span>
+				</label>
+			</div>
+		</section>
+
+		<section class="library wrap" id="المكتبة" aria-labelledby="library-title">
+			<div class="section-heading">
+				<div>
+					<h2 id="library-title">استكشف المكتبة</h2>
+					<p>برامج وألعاب مختارة لتبدأ منها.</p>
+				</div>
+			</div>
+
+			<div class="filters" role="group" aria-label="تصفية حسب التصنيف">
+				<button class="filter-button" type="button" data-filter="all" aria-pressed="true">الكل</button>
+				<button class="filter-button" type="button" data-filter="program" aria-pressed="false">البرامج</button>
+				<button class="filter-button" type="button" data-filter="game" aria-pressed="false">الألعاب</button>
+				<button class="filter-button" type="button" data-filter="media" aria-pressed="false">مشغلات الوسائط</button>
+				<button class="filter-button" type="button" data-filter="design" aria-pressed="false">التصميم</button>
+				<button class="filter-button" type="button" data-filter="browser" aria-pressed="false">المتصفحات</button>
+				<button class="filter-button" type="button" data-filter="adventure" aria-pressed="false">المغامرات والبناء</button>
+				<button class="filter-button" type="button" data-filter="platform" aria-pressed="false">منصات الألعاب</button>
+			</div>
+
+			<div class="cards" id="cards-grid">
+				<article class="app-card" id="البرامج" data-type="program" data-category="media" data-search="vlc media player فيديو مشغل وسائط">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#402128" aria-hidden="true"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/vlcmediaplayer.svg" alt="" data-monochrome="true" loading="lazy" decoding="async"><span hidden>🎬</span></span><div><h3 class="app-name">VLC Media Player</h3><span class="app-category">مشغل وسائط · ويندوز وماك</span></div></div>
+					<p class="app-description">شغّل معظم صيغ الفيديو والصوت بسهولة، مع مشغل مجاني ومفتوح المصدر.</p>
+					<div class="card-bottom"><span class="app-meta">مجاني · رسمي</span><div class="card-actions"><a class="details-button" href="download.html?app=vlc">معلومات الملف</a><a class="download-button" href="https://www.videolan.org/vlc/" target="_blank" rel="noopener noreferrer">تحميل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<article class="app-card" data-type="program" data-category="design" data-search="blender تصميم ثلاثي الابعاد رسوم 3d">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#49232a" aria-hidden="true"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/blender.svg" alt="" data-monochrome="true" loading="lazy" decoding="async"><span hidden>🌀</span></span><div><h3 class="app-name">Blender</h3><span class="app-category">تصميم ثلاثي الأبعاد</span></div></div>
+					<p class="app-description">أنشئ مجسمات ورسومًا ومشاهد ثلاثية الأبعاد بأدوات احترافية متكاملة.</p>
+					<div class="card-bottom"><span class="app-meta">مجاني · رسمي</span><div class="card-actions"><a class="details-button" href="download.html?app=blender">معلومات الملف</a><a class="download-button" href="https://www.blender.org/download/" target="_blank" rel="noopener noreferrer">تحميل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<article class="app-card" data-type="program" data-category="browser" data-search="firefox فايرفوكس متصفح انترنت">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#38202c" aria-hidden="true"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/firefoxbrowser.svg" alt="" data-monochrome="true" loading="lazy" decoding="async"><span hidden>🦊</span></span><div><h3 class="app-name">Firefox</h3><span class="app-category">متصفح إنترنت</span></div></div>
+					<p class="app-description">تصفّح الإنترنت مع أدوات خصوصية وتخصيص تمنحك تحكمًا أكبر.</p>
+					<div class="card-bottom"><span class="app-meta">مجاني · رسمي</span><div class="card-actions"><a class="details-button" href="download.html?app=firefox">معلومات الملف</a><a class="download-button" href="https://www.mozilla.org/firefox/new/" target="_blank" rel="noopener noreferrer">تحميل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<article class="app-card" id="الألعاب" data-type="game" data-category="adventure" data-search="minecraft ماينكرافت بناء مغامرة عالم مفتوح">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#362026" aria-hidden="true"><img src="https://www.minecraft.net/etc.clientlibs/minecraftnet/clientlibs/clientlib-site/resources/favicon.ico" alt="" loading="lazy" decoding="async"><span hidden>⛏️</span></span><div><h3 class="app-name">Minecraft</h3><span class="app-category">مغامرات وبناء</span></div></div>
+					<p class="app-description">اجمع الموارد وابنِ عالمك الخاص في مغامرة تتشكل بالطريقة التي تختارها.</p>
+					<div class="card-bottom"><span class="app-meta">مدفوعة · رسمية</span><div class="card-actions"><a class="details-button" href="download.html?app=minecraft">معلومات الملف</a><a class="download-button" href="https://www.minecraft.net/download" target="_blank" rel="noopener noreferrer">التفاصيل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<article class="app-card" data-type="game" data-category="adventure" data-search="genshin impact جينشن مغامرة عالم مفتوح">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#40222c" aria-hidden="true"><img src="https://genshin.hoyoverse.com/favicon.ico" alt="" loading="lazy" decoding="async"><span hidden>✨</span></span><div><h3 class="app-name">Genshin Impact</h3><span class="app-category">مغامرات وعالم مفتوح</span></div></div>
+					<p class="app-description">استكشف عالم Teyvat الواسع واكتشف قصصًا وشخصيات في رحلة مليئة بالمغامرات.</p>
+					<div class="card-bottom"><span class="app-meta">مجانية · رسمية</span><div class="card-actions"><a class="details-button" href="download.html?app=genshin">معلومات الملف</a><a class="download-button" href="https://genshin.hoyoverse.com/" target="_blank" rel="noopener noreferrer">تحميل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<article class="app-card" data-type="game" data-category="platform" data-search="steam ستيم العاب متجر منصة">
+					<div class="card-top"><span class="app-icon" style="--icon-bg:#272027" aria-hidden="true"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/steam.svg" alt="" data-monochrome="true" loading="lazy" decoding="async"><span hidden>🎮</span></span><div><h3 class="app-name">Steam</h3><span class="app-category">منصة ألعاب للكمبيوتر</span></div></div>
+					<p class="app-description">اكتشف ألعاب الكمبيوتر ونظّم مكتبتك وتواصل مع مجتمع اللاعبين.</p>
+					<div class="card-bottom"><span class="app-meta">مجاني · رسمي</span><div class="card-actions"><a class="details-button" href="download.html?app=steam">معلومات الملف</a><a class="download-button" href="https://store.steampowered.com/about/" target="_blank" rel="noopener noreferrer">تحميل <span aria-hidden="true">↙</span></a></div></div>
+				</article>
+
+				<p class="empty-state" id="empty-state" role="status">ما لقينا نتائج مطابقة. جرّب كلمة بحث ثانية.</p>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="wrap footer-inner">
+			<a class="footer-brand" href="#الرئيسية">مكتبة. <span style="color: var(--muted); font-weight: 400">برامج وألعاب</span></a>
+			<nav class="footer-links" aria-label="روابط الموقع">
+				<a href="about.html">من نحن</a>
+				<a href="contact.html">اتصل بنا</a>
+				<a href="privacy.html">سياسة الخصوصية</a>
+			</nav>
+			<p class="copyright">© 2026 جميع الحقوق محفوظة للمبرمج <strong>مصطفى حسين</strong></p>
+		</div>
+	</footer>
+
+	<script>
+		const searchInput = document.querySelector("#library-search");
+		const filterButtons = document.querySelectorAll(".filter-button");
+		const cards = document.querySelectorAll(".app-card");
+		const emptyState = document.querySelector("#empty-state");
+		let activeFilter = "all";
+
+		document.querySelectorAll(".app-icon img").forEach((image) => {
+			image.addEventListener("error", () => {
+				image.hidden = true;
+				image.nextElementSibling.hidden = false;
+			}, { once: true });
+		});
+
+		function normalizeSearchText(value) {
+			return value
+				.toLocaleLowerCase("ar")
+				.normalize("NFD")
+				.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g, "")
+				.replace(/[أإآٱ]/g, "ا")
+				.replace(/[ىئ]/g, "ي")
+				.replace(/ة/g, "ه");
+		}
+
+		function updateLibrary() {
+			const queryWords = normalizeSearchText(searchInput.value).trim().split(/\s+/).filter(Boolean);
+			let visibleCount = 0;
+
+			cards.forEach((card) => {
+				const matchesFilter = activeFilter === "all"
+					|| card.dataset.type === activeFilter
+					|| card.dataset.category === activeFilter;
+				const searchableText = normalizeSearchText(`${card.dataset.search} ${card.textContent}`);
+				const matchesQuery = queryWords.every((word) => searchableText.includes(word));
+				const isVisible = matchesFilter && matchesQuery;
+				card.hidden = !isVisible;
+				if (isVisible) visibleCount += 1;
+			});
+
+			emptyState.style.display = visibleCount ? "none" : "block";
+		}
+
+		searchInput.addEventListener("input", updateLibrary);
+		filterButtons.forEach((button) => {
+			button.addEventListener("click", () => {
+				activeFilter = button.dataset.filter;
+				filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+				updateLibrary();
+			});
+		});
+	</script>
+</body>
+</html>
